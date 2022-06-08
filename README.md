@@ -27,3 +27,14 @@ php artisan make:factory PersonaFactory
 
 ### crear todalabd y llenar con datos
 php artisan migrate:fresh --seed
+
+### Subir a repositorio proyecto existente
+git init
+
+git add .
+
+git commit -m "primer commit"
+
+git remote add origin https://github.com/cmontellanob/agenda2022
+
+git push -u origin master
