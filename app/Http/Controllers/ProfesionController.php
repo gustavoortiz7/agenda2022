@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profesion;
+use App\Models\Persona;
 use Illuminate\Http\Request;
 
 class ProfesionController extends Controller
@@ -14,6 +15,10 @@ class ProfesionController extends Controller
      */
     public function index()
     {
+        $profesiones = Profesion::all(); //eloquent ORM
+        return view('profesiones.index', [
+            'profesiones' => $profesiones
+        ]);
         //
     }
 
@@ -24,6 +29,7 @@ class ProfesionController extends Controller
      */
     public function create()
     {
+        return view('profesiones.create');
         //
     }
 
@@ -35,6 +41,10 @@ class ProfesionController extends Controller
      */
     public function store(Request $request)
     {
+        $profesion =new Profesion();
+        $profesion->nombre = $request->nombre;
+        $profesion->save();
+        return redirect()->route('profesiones.index');
         //
     }
 
@@ -46,6 +56,7 @@ class ProfesionController extends Controller
      */
     public function show(Profesion $profesion)
     {
+        return view ('profesiones.show',['profesion'=>$profesion]);
         //
     }
 
@@ -57,6 +68,7 @@ class ProfesionController extends Controller
      */
     public function edit(Profesion $profesion)
     {
+        return view ('profesiones.edit',['profesion'=>$profesion]);
         //
     }
 
@@ -69,6 +81,9 @@ class ProfesionController extends Controller
      */
     public function update(Request $request, Profesion $profesion)
     {
+        $profesion->nombre = $request->nombre;
+        $profesion->save();
+        return redirect()->route ('profesiones.index');
         //
     }
 
@@ -80,6 +95,8 @@ class ProfesionController extends Controller
      */
     public function destroy(Profesion $profesion)
     {
+        $profesion->delete();
+        return redirect()->route ('profesiones.index');
         //
     }
 }

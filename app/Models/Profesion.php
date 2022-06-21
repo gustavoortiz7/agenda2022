@@ -9,4 +9,7 @@ class Profesion extends Model
 {
     use HasFactory;
     protected $table = 'profesiones';
+    public function personas(){
+        return $this->hasMany(Persona::class);
+    }
 }
